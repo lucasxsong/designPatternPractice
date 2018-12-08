@@ -93,10 +93,10 @@ class Command {
 
 class addNode : public Command {
     public:
-    Linkedlist l;
+    Linkedlist* l;
     addNode();
-    addNode(Linkedlist &l) {
-        this->l = l;
+    addNode(Linkedlist l) {
+        this->l = &l;
     }
 
     void execute() {
@@ -164,8 +164,7 @@ void Node::accept(Visitor* v) {
 }
 
 void Linkedlist::addNode() {
-    addNode* a = new addNode();
-    a->l = this;
+    addNode* a = new addNode(this);
     a->execute();
     commands.push_back(a);
 }
